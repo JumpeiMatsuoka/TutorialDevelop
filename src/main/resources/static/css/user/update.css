@@ -5,3 +5,11 @@ label{
     width: 8em;
     line-height: 150%;
 }
+  .error {
+    color: #d9534f;
+    display:block;
+}
+
+.form-field {
+    margin-bottom: 10px;
+}

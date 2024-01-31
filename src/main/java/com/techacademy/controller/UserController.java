@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techacademy.entity.User;
 import com.techacademy.service.UserService;
@@ -47,16 +48,19 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}/")
-    public String getUser(@PathVariable("id")Integer id,Model model) {
-
-        model.addAttribute("user",service.getUser(id));
+    public String getUser(@PathVariable("id") Integer id, Model model) {
+        User user = service.getUser(id);
+        model.addAttribute("user", user);
         return "user/update";
     }
 
     @PostMapping("/update/{id}/")
-    public String postUser(User user) {
+    public String postUser(@PathVariable("id") Integer id, @Validated @ModelAttribute User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "user/update";
+        }
         service.saveUser(user);
-        return"redirect:/user/list";
+        return "redirect:/user/list";
     }
     @PostMapping(path="list",params="deleteRun")
     public String deleteRun(@RequestParam(name="idck") Set<Integer>idck,Model model) {
