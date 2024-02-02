@@ -64,9 +64,5 @@ public class User {
        if(authentication!=null) {
            authentication.setUser(null);
        }
-   }
-
-public User(int i, String string, String string2, int j, String string3) {
-    // TODO 自動生成されたコンストラクター・スタブ
 }
 }
