@@ -39,9 +39,9 @@ class UserControllerTest {
     @DisplayName("Userリストページの検証")
     @WithMockUser
     void testGetList() throws Exception {
-        mockMvc.perform(get("/user/list")) // UserリストのURLにアクセス
-                .andExpect(status().isOk()) // ステータスが200 OKであることを確認
-                .andExpect(model().attributeExists("userlist")) // Modelに"userlist"が存在することを確認
-                .andExpect(view().name("user/list")); // 表示されるviewが"user/list"であることを確認
+        mockMvc.perform(get("/user/list"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("userlist"))
+                .andExpect(view().name("user/list"));
     }
 }
